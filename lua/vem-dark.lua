@@ -1,27 +1,40 @@
 -- main module file
-local module = require("plugin_name.module")
+local theme = require('vem-dark.theme')
 
 ---@class Config
 ---@field opt string Your config option
 local config = {
-  opt = "Hello!",
+  color_overrides = {},
+  group_overrides = {},
 }
 
----@class MyModule
 local M = {}
 
 ---@type Config
 M.config = config
 
 ---@param args Config?
--- you can define your setup function here. Usually configurations can be merged, accepting outside params and
--- you can also put some validation here for those.
 M.setup = function(args)
-  M.config = vim.tbl_deep_extend("force", M.config, args or {})
+  M.config = vim.tbl_deep_extend('force', M.config, args or {})
 end
 
-M.hello = function()
-  return module.my_first_function(M.config.opt)
+M.load = function()
+  vim.cmd('hi clear')
+  if vim.fn.exists('syntax_on') then
+    vim.cmd('syntax reset')
+  end
+
+  vim.o.termguicolors = true
+  vim.g.colors_name = 'vem-dark'
+
+  theme.highlights()
+
+  if M.config.group_overrides then
+    for group, val in pairs(M.config.group_overrides) do
+      val.force = true
+      vim.api.nvim_set_hl(0, group, val)
+    end
+  end
 end
 
 return M

@@ -3,7 +3,7 @@
 ## Using 
 
 ```
-retrurn {
+return {
   'bstaint/vem-dark',
   opts = {
     group_overrides = {

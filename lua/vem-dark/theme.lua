@@ -2,20 +2,17 @@
 local M = {}
 
 local hi = function(name, val, cterm)
-    -- Force links
-    val.force = true
-
-    -- Make sure that `cterm` attribute is not populated from `gui`
-    cterm = cterm or {}
-
-    -- Define global highlight
-    vim.api.nvim_set_hl(0, name, val)
+  -- Force links
+  val.force = true
+  -- Make sure that `cterm` attribute is not populated from `gui`
+  cterm = cterm or {}
+  -- Define global highlight
+  vim.api.nvim_set_hl(0, name, val)
 end
 
-M.highlights = function()
+M.apply = function()
   local c = require('vem-dark.colors')
 
-  -- let s:italic = get(g:, 'vem_colors_italic', has('gui_running')) ? 'italic' : 'none'
   local italic = true
 
   local vemTermBold = { bold = true }
@@ -45,12 +42,12 @@ M.highlights = function()
   hi('QuickFixLine', { fg = c.vemWhite, bg = c.vemCursorDarkDark, ctermfg = c.vemTermWhite, ctermbg = c.vemTermVisualBack })
   -- Windows, Tabline, Statusline
   hi('VertSplit', { fg = c.vemSplitDark, bg = c.vemSplitDark, ctermfg = c.vemTermBorder, ctermbg = c.vemTermBorder })
+  hi('WinSeparator', { link = 'VertSplit' })
   hi('StatusLine', { fg = c.vemStatusLineFront, bg = c.vemSplitDark, ctermfg = c.vemTermWhite, ctermbg = c.vemTermBorder })
   hi('StatusLineNC', { fg = c.vemStatusLineFront, bg = c.vemLine, italic = italic, ctermfg = c.vemTermStatusLineFront, ctermbg = c.vemTermStatusLineBack, cterm = vemTermItalic })
   hi('TabLine', { fg = c.vemTabLineLightGrey, bg = c.vemBack, ctermfg = c.vemTermTabLineFront, ctermbg = c.vemTermTabLineBack })
   hi('TabLineSel', { fg = c.vemBack, bg = c.vemWhite, bold = true, ctermfg = c.vemTermTabLineFront, ctermbg = c.vemTermWhite, cterm = vemTermBold })
   hi('TabLineFill', { fg = c.vemStatusLineFront, bg = c.vemCursorDarkDark, italic = italic, ctermfg = c.vemTermWhite, ctermbg = c.vemTermWhite })
-  hi('WinSeparator', { link = 'VertSplit' })
   -- Terminal
   hi('Terminal', { fg = c.vemFront, bg = c.vemNonTextBack, ctermfg = c.vemTermWhite, ctermbg = c.vemTermTerminalBack })
   hi('StatusLineTerm', { fg = c.vemStatusLineFront, bg = c.vemSplitDark, ctermfg = c.vemTermWhite, ctermbg = c.vemTermBorder })

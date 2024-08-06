@@ -1,6 +1,3 @@
--- main module file
-local theme = require('vem-dark.theme')
-
 ---@class Config
 ---@field opt string Your config option
 local config = {
@@ -27,7 +24,8 @@ M.load = function()
   vim.o.termguicolors = true
   vim.g.colors_name = 'vem-dark'
 
-  theme.highlights()
+  require('vem-dark.theme').apply()
+  require('vem-dark.leaderf').apply()
 
   if M.config.group_overrides then
     for group, val in pairs(M.config.group_overrides) do

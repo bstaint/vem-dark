@@ -1,5 +1,14 @@
 ---@class Color
 return {
+  hi = function(name, val, cterm)
+    -- Force links
+    val.force = true
+    -- Make sure that `cterm` attribute is not populated from `gui`
+    cterm = cterm or {}
+    -- Define global highlight
+    vim.api.nvim_set_hl(0, name, val)
+  end,
+
   vemTermFront = 255,
   vemTermBack = 235,
   vemTermWhite = 255,

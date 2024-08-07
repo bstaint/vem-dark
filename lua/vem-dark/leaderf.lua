@@ -1,14 +1,5 @@
 local M = {}
 
-local hi = function(name, val, cterm)
-  -- Force links
-  val.force = true
-  -- Make sure that `cterm` attribute is not populated from `gui`
-  cterm = cterm or {}
-  -- Define global highlight
-  vim.api.nvim_set_hl(0, name, val)
-end
-
 local function StlPalette()
   return {
     stlName = {
@@ -60,8 +51,12 @@ local function StlPalette()
 end
 
 M.apply = function()
+  local hi = require('vem-dark.colors').hi
+
   vim.g.Lf_StlPalette = StlPalette()
 
+  hi('Lf_hl_selection', { link = 'Search' })
+  hi('Lf_hl_cursorline', { link = 'CursorLine' })
   hi('Lf_hl_popup_inputText', { fg = '#e6e3d8',  bg = '#242424' })
   hi('Lf_hl_popup_prompt', { link = 'Label' })
   hi('Lf_hl_popup_lineInfo', { fg = '#101010', bg = '#d7ff87' })

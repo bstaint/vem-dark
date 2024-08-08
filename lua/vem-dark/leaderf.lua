@@ -14,22 +14,22 @@ local function StlPalette()
     stlNameOnlyMode = {
       gui = 'bold',
       guifg = '#373737',
-      guibg = '#cae682',
+      guibg = '#8ac6f2',
     },
     stlFullPathMode = {
       gui = 'bold',
       guifg = '#373737',
-      guibg = '#cae682',
+      guibg = '#8ac6f2',
     },
     stlFuzzyMode = {
       gui = 'bold',
       guifg = '#373737',
-      guibg = '#cae682',
+      guibg = '#8ac6f2',
     },
     stlRegexMode = {
       gui = 'bold',
       guifg = '#373737',
-      guibg = '#cae682',
+      guibg = '#8ac6f2',
     },
     stlCwd = {
       guifg = '#404040',
